@@ -89,9 +89,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     $lname = $_POST["lname"];
     $email = $_POST["email"];
 
-    $fname2 = $_POST["fname"];
-    $lname2 = $_POST["lname"];
-    $email2 = $_POST["email"];
+    $fname2 = $_POST["fname2"];
+    $lname2 = $_POST["lname2"];
+    $email2 = $_POST["email2"];
 
 
     try{
