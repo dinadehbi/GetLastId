@@ -81,9 +81,9 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     $servername = "localhost";
     $username = "root";
-    $database = "myData";
+    $database = "ana";
     $password = "";
-    $tablename = "Form1";
+    $tablename = "Form";
 
     $fname = $_POST["fname"];
     $lname = $_POST["lname"];
@@ -97,15 +97,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     try{
     $con = new PDO("mysql:host=$servername;dbname=$database",$username,$password);
     $con -> setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-    $sql = "INSERT INTO $tablename(firstname, lastname, email) VALUES('$fname','$lname','$email')";
-    $sql = "INSERT INTO $tablename(firstname, lastname, email) VALUES('$fname2','$lname2','$email2')";
+    $sql = "INSERT INTO $tablename(FirstName, LastName, Email) VALUES('$fname','$lname','$email')";
+    $sql2 = "INSERT INTO $tablename(FirstName, LastName, Email) VALUES('$fname2','$lname2','$email2')";
 
     $con->exec($sql);
+    $con->exec($sql2);
     $last_id = $con->lastInsertId();
 
     $display = "New records created successfully in ID: " . $last_id;
    }catch(PDOException $e){
-     $display2 = "Error:"  . $e->getMessage();
+     $display2 = $sql ."Error:"  . $e->getMessage();
    }
    $con = null;
 }
@@ -131,13 +132,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         <label>Email:</label><br>
         <input type="text" placeholder="Entre your Email" name="email2">
         </div>
-</div>
+       </div>
         <br>
         <div id="btn">
         <div>
         <button type="submit" name="submit"">Insert</button>
         <br><br>
-        
         </div>
         </div>
         <span id="span1"><?php echo $display?></span>
